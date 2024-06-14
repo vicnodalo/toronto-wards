@@ -1,65 +1,46 @@
-<!doctype html>
 <html lang="en">
 
-<head>
-	<meta charset='utf-8' />
-	<title>
-		Preview
-	</title>
-	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
-	<!--[if lte IE 8]>
-			<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
-		<![endif]-->
-	<style>
-		html {
-			height: 100%
-		}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="device-width, initial-scale=1"> 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+   crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+   crossorigin=""></script>
+   <link rel="stylesheet" href="https://vicnodalo.github.io/gh-pages.css"/>
+  </head>
 
-		body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
+  <body>
+    <div id="map" style="width: 600px; height: 400px; position: relative; margin: auto;">
+    </div>
 
-		#map {
-			height: 100%
-		}
-	</style>
-	<link rel="stylesheet" href="gh-pages.css" />
-</head>
+    <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.cs"></script>
+    <script src="https://vicnodalo.github.io/catiline.js"></script>
+    <script src=”https://vicnodalo.github.io/leaflet.shpfile.js”></script>
+    <script src=”https://vicnodalo.github.io/shp.js”></script>
 
-<body>
-	<div class="github-fork-ribbon-wrapper right">
-		<div class="github-fork-ribbon">
-			<a href="https://github.com/calvinmetcalf/leaflet.shapefile">Fork me on GitHub</a>
-		</div>
-	</div>
-	<div id="map"></div>
-	<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
-	<script src="catiline.js"></script>
-	<script src="leaflet.shpfile.js"></script>
-	<script>
-		var m = L.map('map').setView([42.09618442380296, -71.5045166015625], 8);
-		var watercolor = L.tileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg', {
-			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
-		}).addTo(m);
+    <script type="text/javascript">
+      var map = L.map('map').setView([43.75, -79.3832], 10);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+      }).addTo(map);
+    </script>
 
-		var shpfile = new L.Shapefile('congress.zip', {
-			onEachFeature: function(feature, layer) {
-				if (feature.properties) {
-					layer.bindPopup(Object.keys(feature.properties).map(function(k) {
-						return k + ": " + feature.properties[k];
-					}).join("<br />"), {
-						maxHeight: 200
-					});
-				}
-			}
-		});
-		shpfile.addTo(m);
-		shpfile.once("data:loaded", function() {
-			console.log("finished loaded shapefile");
-		});
-	</script>
-</body>
-
+    <script>
+      var shpfile = new L.Shapefile(‘https://vicnodalo.github.io/25-ward-model-december-2018-wgs84-latitude-longitude.zip’); 
+      shpfile.addTo(map);
+    </script>
+    
+    <script>
+      var shpfile = new L.Shapefile('https://vicnodalo.github.io/25-ward-model-december-2018-wgs84-latitude-longitude.zip’), 
+      {
+        onEachFeature:function(feature, layer) { layer.bindPopup(“<a href=
+        ‘”+feature.properties.WEBPAGE+”‘>Page</a><br>
+        <a href='”+feature. properties.PICTURE+”‘>Image</a>”); });
+    </script> 
+    
+  </body>
 </html>
