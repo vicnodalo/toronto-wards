@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
    crossorigin=""></script>
-   <link rel="stylesheet" href="https://github.com/vicnodalo/toronto-wards/gh-pages.css"/>
+   <link rel="stylesheet" href="https://vicnodalo.github.io/gh-pages.css"/>
   </head>
 
   <body>
@@ -17,9 +17,9 @@
     </div>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.cs"></script>
-    <script src="http://github.com/vicnodalo/toronto-wards/catiline.js"></script>
-    <script src=”http://github.com/vicnodalo/toronto-wards/leaflet.shpfile.js”></script>
-    <script src=”http://github.com/vicnodalo/toronto-wards/shp.js”></script>
+    <script src="https://vicnodalo.github.io/catiline.js"></script>
+    <script src=”https://vicnodalo.github.io/leaflet.shpfile.js”></script>
+    <script src=”https://vicnodalo.github.io/shp.js”></script>
 
     <script type="text/javascript">
       var map = L.map('map').setView([43.75, -79.3832], 10);
@@ -30,12 +30,13 @@
     </script>
 
     <script>
-      var shpfile = new L.Shapefile(‘github.com/vicnodalo/toronto-wards/25-ward-model-december-2018-wgs84-latitude-longitude.zip’); 
+      var shpfile = new L.Shapefile(‘https://vicnodalo.github.io/25-ward-model-december-2018-wgs84-latitude-longitude.zip’); 
       shpfile.addTo(map);
     </script>
     
     <script>
-      var shpfile = new L.Shapefile('github.com/vicnodalo/toronto-wards/25-ward-model-december-2018-wgs84-latitude-longitude.zip’),{
+      var shpfile = new L.Shapefile('https://vicnodalo.github.io/25-ward-model-december-2018-wgs84-latitude-longitude.zip’), 
+      {
         onEachFeature:function(feature, layer) { layer.bindPopup(“<a href=
         ‘”+feature.properties.WEBPAGE+”‘>Page</a><br>
         <a href='”+feature. properties.PICTURE+”‘>Image</a>”); });
